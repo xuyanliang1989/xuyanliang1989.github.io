@@ -208,5 +208,6 @@ def main():
     print("URL: /{}/{}/{}/{}.html".format(today[:4], today[5:7], today[8:10], sl))
 
 
-if __name__ == "__&#8203;main__":
-    main()
+# 直接调用（不用 if __name__ == "__main__" 判断：那个写法在复制粘贴时
+# 极易混入零宽空格导致静默失败——任务显示绿勾但啥也不干）。
+main()
