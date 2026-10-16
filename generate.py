@@ -101,14 +101,22 @@ For every article you write, follow these HARD rules:
 3. Exact structure, in order:
    - H1 title = the topic itself, verbatim.
    - ~100-word opening that drops the reader into a real pain-point scenario (e.g., rain leaking through a tent at 2am).
+   - A short "What to look for" buying-guide section (~100-150 words, 3-4 bullet points of the key criteria that actually matter) right after the opening and before the product reviews.
    - 5 to 7 product reviews. For EACH: product name, price range, exactly 3 pros (each 1-2 full sentences), exactly 1 con (1-2 full sentences), a 2-3 sentence real-world use scenario, and a "Best for:" line saying who should buy it.
    - A comparison table in MARKDOWN PIPE SYNTAX — mandatory. It must include a header row like `| Product | Price | Best For | Key Strength |` and a separator row `|---|---|---|---|`, then one row per product. Do NOT use any other table style.
    - A section with the EXACT heading `## Final Verdict` giving a clear top pick and a budget pick.
    - A section with the EXACT heading `## FAQ` containing exactly 5 FAQs with 2-3 sentence answers each.
    - The comparison table, the `## Final Verdict` heading, and the `## FAQ` heading are ALL mandatory and must appear in every article. Never omit them.
 4. After EVERY product name, insert the exact placeholder {{PRODUCT_LINK}} (keep the curly braces, do not replace or explain it).
-5. Length: write AT LEAST 2200 words, target 2200-2600. This is a HARD requirement — never stop before 2200 words. If you are running short, add more detail to each product description and expand the FAQs until you reach the minimum.
-6. Output ONLY the markdown article. Start with the H1 title. No preamble, no "Here is your article"."""
+6. Editorial quality rules (mandatory — these come from a real audit of already-published articles):
+   - The H1 title appears EXACTLY ONCE, at the very top. Never repeat the topic title as a section heading. Each product gets its own descriptive H2 heading (e.g., `## Shimano Sedona FJ`), never the article title.
+   - NEVER add meta-commentary about your own list items (no "yes, a third one", no "one more", no "last but not least"). List the pros and cons plainly.
+   - First-person voice is fine for GENERALIZED experience ("in my experience, reels in this size handle..."). NEVER fabricate specific verifiable personal stories — no exact trip dates, no exact locations, no exact catch counts like "hundreds of bass". For specific claims write "anglers report", "owners commonly find", or cite the spec.
+   - Rotate your product lineup across articles: do not lean on the same 2-3 famous defaults every time. Let a different product take the top pick when it honestly deserves it, so each article feels like a fresh roundup.
+   - FAQ questions must be specific to THIS topic and answer real buyer questions — no generic filler like "is this worth it".
+   - Never fabricate awards, star ratings, review counts, or quotes from named publications.
+7. Length: write AT LEAST 2200 words, target 2200-2600. This is a HARD requirement — never stop before 2200 words. If you are running short, add more detail to each product description and expand the FAQs until you reach the minimum.
+8. Output ONLY the markdown article. Start with the H1 title. No preamble, no "Here is your article"."""
 
 
 def call_llm(topic: str, today: str) -> str:
