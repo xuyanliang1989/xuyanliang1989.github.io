@@ -117,9 +117,10 @@ def call_llm(topic: str, today: str) -> str:
         print("ERROR: LLM_API_KEY secret is not set.")
         sys.exit(1)
     # 默认走 DeepSeek（api.deepseek.com，国产、国内可直连；充 ¥1 起即可，约 ¥0.01/篇，30篇≈¥0.3）。
-    # 想换别家，只改下面默认值或设 LLM_BASE_URL/LLM_MODEL 两个 secret 即可。
-    base = os.environ.get("LLM_BASE_URL", "https://api.deepseek.com").rstrip("/")
-    model = os.environ.get("LLM_MODEL", "deepseek-chat")
+    # 注意用 `or` 兜底：GitHub Actions 对"未创建的密钥"会传空字符串（不是不存在），
+    # os.environ.get(key, 默认值) 遇到空串不会用默认值 → URL 变空 → 秒崩。用 or 同时防"没设置"和"设为空串"。
+    base = (os.environ.get("LLM_BASE_URL") or "https://api.deepseek.com").rstrip("/")
+    model = os.environ.get("LLM_MODEL") or "deepseek-chat"
 
     user = (
         "Write the full article for this exact topic:\n\n"
