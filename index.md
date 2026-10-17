@@ -13,3 +13,5 @@ No-nonsense outdoor camping gear reviews for US campers. We compare real product
   <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
+
+[About & Editorial Policy](/about.html)
