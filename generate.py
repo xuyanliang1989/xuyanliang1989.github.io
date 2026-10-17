@@ -56,6 +56,30 @@ def slugify(s: str) -> str:
     return s.strip("-")
 
 
+
+SITE_URL = "https://xuyanliang1989.github.io"
+
+
+def build_sitemap():
+    """每次发文后重新生成 sitemap.xml（静态文件，不依赖 Pages 插件——
+    legacy 构建对 _config.yml 的 plugins key 支持有问题，实测会 build failed）。"""
+    urls = [SITE_URL + "/", SITE_URL + "/about.html"]
+    for f in sorted(glob.glob("_posts/*.md")):
+        m = re.match(r"_posts/(\d{4})-(\d{2})-(\d{2})-(.+)\.md$", os.path.basename(f))
+        if m:
+            y, mo, d, sl = m.groups()
+            urls.append(SITE_URL + "/" + y + "/" + mo + "/" + d + "/" + sl + ".html")
+    body = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    )
+    for u in urls:
+        body += "  <url><loc>" + u + "</loc></url>\n"
+    body += "</urlset>\n"
+    with open("sitemap.xml", "w", encoding="utf-8") as fp:
+        fp.write(body)
+    print("SITEMAP: " + str(len(urls)) + " urls")
+
 def bootstrap():
     """首次运行时，若仓库里没有 _config.yml / index.md，自动补上。"""
     if not os.path.exists("_config.yml"):
@@ -215,6 +239,7 @@ def main():
     print("FILE: " + fname)
     print("WORDS: " + str(words))
     print("URL: /{}/{}/{}/{}.html".format(today[:4], today[5:7], today[8:10], sl))
+    build_sitemap()
 
 
 # 直接调用（不用 if __name__ == "__main__" 判断：那个写法在复制粘贴时
