@@ -219,30 +219,61 @@ NON_PRODUCT_H2 = (
 )
 
 
+# 产品名后缀词（小写但属于产品名一部分）
+NAME_SUFFIX_WORDS = ("plus", "mini", "max", "pro", "ultra", "lite", "air", "one", "two")
+
+
+def _is_name_token(t):
+    """判断 token 是否像产品名的一部分（覆盖 v2/x2 这类型号后缀）。
+    纯字符串判断，不用正则（防转义被管道/编辑器破坏）。"""
+    t = t.strip(",.;:!?'")
+    if not t:
+        return False
+    if t[0].isupper() or t[0].isdigit():
+        return True
+    # 型号后缀：小写字母+数字（v2、x2、v3）
+    if len(t) <= 4 and t[0].islower() and t[0].isalpha() and t[1:].isdigit():
+        return True
+    if t.lower() in NAME_SUFFIX_WORDS:
+        return True
+    return False
+
+
 def _extract_product_name(left_text, h2_title):
     """从 {{PRODUCT_LINK}} 左侧文本提取产品名；提不出就用 H2 产品段标题兜底。"""
-    cleaned = re.sub(r"[|*\[\]()]", " ", left_text)
+    cleaned = left_text
+    for ch in "|*[]()":
+        cleaned = cleaned.replace(ch, " ")
     tokens = cleaned.split()
     picked = []
     for t in reversed(tokens):
-        t = t.strip(",.;:!?\"'")
-        if re.match(r"^[A-Z0-9]", t):
-            picked.insert(0, t)
+        t2 = t.strip(",.;:!?'")
+        if _is_name_token(t2):
+            picked.insert(0, t2)
         else:
             break
     if picked:
         return " ".join(picked)
-    if (h2_title and "{{" not in h2_title
-            and h2_title.strip().lower() not in NON_PRODUCT_H2):
-        return h2_title.strip()
+    if h2_title and "{{" not in h2_title:
+        low = h2_title.strip().lower()
+        if not any(low.startswith(w) for w in NON_PRODUCT_H2):
+            return h2_title.strip()
+    return None
+
+
+def _splice_link(left, name, url):
+    """把左侧文本中的产品名原文片段替换为 markdown 链接，保留尾部标记字符（如 ** ）。"""
+    pos = left.rfind(name)
+    if pos >= 0 and left[pos + len(name):].strip("* []|") == "":
+        return left[:pos] + "[" + name + "](" + url + ")" + left[pos + len(name):]
     return None
 
 
 def resolve_product_links(article):
     """把正文里的 {{PRODUCT_LINK}} 全部替换为亚马逊搜索 markdown 链接。
-    覆盖两种形态：表格行（| Product {{PRODUCT_LINK}} | ...）和正文（Product {{PRODUCT_LINK}} is...）。
-    注意：LLM 有时会把占位符插进 H2 标题（## Product {{PRODUCT_LINK}}），标题行直接删占位符
-    （标题即产品名，链接放正文/表格），并先净化 current_h2 防止兜底污染导致死循环。
+    覆盖三种形态：表格行（| Product {{PRODUCT_LINK}} | ...）、正文（Product {{PRODUCT_LINK}} is...）、
+    H2 标题行（## Product {{PRODUCT_LINK}}，标题即产品名，直接删占位符）。
+    LLM 会把占位符插进 H2，所以先净化 current_h2 防止兜底污染；单行 60 轮硬上限防死循环。
     返回 (新文本, 替换次数, 失败次数)。失败处直接删掉占位符，绝不让它裸露到页面上。"""
     NL = chr(10)
     lines = article.split(NL)
@@ -253,14 +284,12 @@ def resolve_product_links(article):
     out = []
     for line in lines:
         if line.startswith("## "):
-            # 标题行：删掉占位符再记录 current_h2（防兜底污染）
             line = line.replace(ph, "").rstrip()
             current_h2 = line[3:].strip()
         guard = 0
         while ph in line:
             guard += 1
             if guard > 60:
-                # 保险：单行超过 60 轮还没清完，直接删光剩余占位符，防止死循环
                 line = line.replace(ph, "")
                 break
             idx = line.index(ph)
@@ -273,9 +302,9 @@ def resolve_product_links(article):
             url = "https://www.amazon.com/s?k=" + _urlquote(name)
             if AMAZON_TAG:
                 url += "&tag=" + _urlquote(AMAZON_TAG)
-            if left.endswith(name):
-                start = len(left) - len(name)
-                line = left[:start] + "[" + name + "](" + url + ")" + line[idx + len(ph):]
+            spliced = _splice_link(left, name, url)
+            if spliced is not None:
+                line = spliced + line[idx + len(ph):]
             else:
                 line = left + "[" + name + "](" + url + ")" + line[idx + len(ph):]
             replaced += 1
