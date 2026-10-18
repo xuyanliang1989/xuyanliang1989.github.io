@@ -15,3 +15,8 @@ No-nonsense outdoor camping gear reviews for US campers. We compare real product
 </ul>
 
 [About & Editorial Policy](/about.html)
+
+## Our Other Sites
+
+- [Fishing Gear Reviews](https://xuyanliang1989.github.io/fishing-gear-reviews/)
+- [Portable Power Station Reviews](https://xuyanliang1989.github.io/portable-power-reviews/)
