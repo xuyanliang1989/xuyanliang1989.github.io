@@ -232,7 +232,8 @@ def _extract_product_name(left_text, h2_title):
             break
     if picked:
         return " ".join(picked)
-    if h2_title and h2_title.strip().lower() not in NON_PRODUCT_H2:
+    if (h2_title and "{{" not in h2_title
+            and h2_title.strip().lower() not in NON_PRODUCT_H2):
         return h2_title.strip()
     return None
 
@@ -240,6 +241,8 @@ def _extract_product_name(left_text, h2_title):
 def resolve_product_links(article):
     """把正文里的 {{PRODUCT_LINK}} 全部替换为亚马逊搜索 markdown 链接。
     覆盖两种形态：表格行（| Product {{PRODUCT_LINK}} | ...）和正文（Product {{PRODUCT_LINK}} is...）。
+    注意：LLM 有时会把占位符插进 H2 标题（## Product {{PRODUCT_LINK}}），标题行直接删占位符
+    （标题即产品名，链接放正文/表格），并先净化 current_h2 防止兜底污染导致死循环。
     返回 (新文本, 替换次数, 失败次数)。失败处直接删掉占位符，绝不让它裸露到页面上。"""
     NL = chr(10)
     lines = article.split(NL)
@@ -250,8 +253,16 @@ def resolve_product_links(article):
     out = []
     for line in lines:
         if line.startswith("## "):
+            # 标题行：删掉占位符再记录 current_h2（防兜底污染）
+            line = line.replace(ph, "").rstrip()
             current_h2 = line[3:].strip()
+        guard = 0
         while ph in line:
+            guard += 1
+            if guard > 60:
+                # 保险：单行超过 60 轮还没清完，直接删光剩余占位符，防止死循环
+                line = line.replace(ph, "")
+                break
             idx = line.index(ph)
             left = line[:idx].rstrip()
             name = _extract_product_name(left, current_h2)
