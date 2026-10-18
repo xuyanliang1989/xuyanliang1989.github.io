@@ -196,6 +196,98 @@ def call_llm(topic: str, today: str) -> str:
     return text
 
 
+# ===== 产品链接解析 + 联盟披露（2026-10-18 上线，修复占位符裸露事故）=====
+# 背景：SYSTEM prompt 要求 LLM 在每个产品名后插 {{PRODUCT_LINK}} 占位符，此前没有
+# 替换逻辑，占位符原样渲染到了页面上（读者看到 {{PRODUCT_LINK}}、购买链接全死）。
+# 现在发布前统一替换为亚马逊搜索链接。联盟申请下来后，在仓库
+# Settings→Secrets and variables→Actions 加 AMAZON_TAG=xxx-20，
+# 之后所有新文章自动带 tag，无需再改代码。
+from urllib.parse import quote as _urlquote
+
+AMAZON_TAG = os.environ.get("AMAZON_TAG", "").strip()
+
+DISCLOSURE = (
+    "> *Disclosure: Some links in this article may be affiliate links. "
+    "If you buy through them, we may earn a commission at no extra cost to you. "
+    "This never influences our recommendations or rankings.*"
+)
+
+# 非产品段的 H2 标题（占位符左侧提不出产品名时，排除用这些标题兜底）
+NON_PRODUCT_H2 = (
+    "what to look for", "final verdict", "faq", "comparison",
+    "how we test", "how we write", "about", "conclusion", "verdict",
+)
+
+
+def _extract_product_name(left_text, h2_title):
+    """从 {{PRODUCT_LINK}} 左侧文本提取产品名；提不出就用 H2 产品段标题兜底。"""
+    cleaned = re.sub(r"[|*\[\]()]", " ", left_text)
+    tokens = cleaned.split()
+    picked = []
+    for t in reversed(tokens):
+        t = t.strip(",.;:!?\"'")
+        if re.match(r"^[A-Z0-9]", t):
+            picked.insert(0, t)
+        else:
+            break
+    if picked:
+        return " ".join(picked)
+    if h2_title and h2_title.strip().lower() not in NON_PRODUCT_H2:
+        return h2_title.strip()
+    return None
+
+
+def resolve_product_links(article):
+    """把正文里的 {{PRODUCT_LINK}} 全部替换为亚马逊搜索 markdown 链接。
+    覆盖两种形态：表格行（| Product {{PRODUCT_LINK}} | ...）和正文（Product {{PRODUCT_LINK}} is...）。
+    返回 (新文本, 替换次数, 失败次数)。失败处直接删掉占位符，绝不让它裸露到页面上。"""
+    NL = chr(10)
+    lines = article.split(NL)
+    current_h2 = ""
+    replaced = 0
+    failed = 0
+    ph = "{{PRODUCT_LINK}}"
+    out = []
+    for line in lines:
+        if line.startswith("## "):
+            current_h2 = line[3:].strip()
+        while ph in line:
+            idx = line.index(ph)
+            left = line[:idx].rstrip()
+            name = _extract_product_name(left, current_h2)
+            if not name:
+                failed += 1
+                line = line[:idx] + line[idx + len(ph):]
+                continue
+            url = "https://www.amazon.com/s?k=" + _urlquote(name)
+            if AMAZON_TAG:
+                url += "&tag=" + _urlquote(AMAZON_TAG)
+            if left.endswith(name):
+                start = len(left) - len(name)
+                line = left[:start] + "[" + name + "](" + url + ")" + line[idx + len(ph):]
+            else:
+                line = left + "[" + name + "](" + url + ")" + line[idx + len(ph):]
+            replaced += 1
+        out.append(line)
+    return NL.join(out), replaced, failed
+
+
+def add_disclosure(article):
+    """文章开头（H1 后）和文末各插一段 FTC 联盟披露。已有披露则不重复插。"""
+    if "Disclosure:" in article:
+        return article
+    NL = chr(10)
+    lines = article.split(NL)
+    insert_at = 0
+    for i, ln in enumerate(lines[:5]):
+        if ln.startswith("# "):
+            insert_at = i + 1
+            break
+    lines = lines[:insert_at] + ["", DISCLOSURE, ""] + lines[insert_at:]
+    lines = lines + ["", "---", "", DISCLOSURE]
+    return NL.join(lines)
+
+
 def qa_ok(text: str) -> bool:
     words = len(text.split())
     if words < 1800:
@@ -203,6 +295,9 @@ def qa_ok(text: str) -> bool:
         return False
     if "Final Verdict" not in text or "FAQ" not in text or "|" not in text:
         print("QA FAIL: missing required section or comparison table.")
+        return False
+    if "{{" in text or "PRODUCT_LINK" in text:
+        print("QA FAIL: unresolved {{PRODUCT_LINK}} placeholder in text.")
         return False
     low = text.lower()
     for w in ["as an ai", "i cannot", "i can't", "i am unable", "i'm unable"]:
@@ -221,6 +316,10 @@ def main():
 
     today = datetime.date.today().strftime("%Y-%m-%d")
     article = call_llm(topic, today)
+    # 先把 {{PRODUCT_LINK}} 占位符解析成亚马逊搜索链接，再补 FTC 披露，最后过 QA
+    article, n_rep, n_fail = resolve_product_links(article)
+    article = add_disclosure(article)
+    print("LINKS: resolved={}, failed={}".format(n_rep, n_fail))
     if not qa_ok(article):
         sys.exit(1)
 
