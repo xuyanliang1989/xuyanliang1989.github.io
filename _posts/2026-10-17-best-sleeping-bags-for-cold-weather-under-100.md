@@ -5,6 +5,9 @@ title: "Best Sleeping Bags for Cold Weather Under $100"
 {% raw %}
 # Best Sleeping Bags for Cold Weather Under $100
 
+> *Disclosure: Some links in this article may be affiliate links. If you buy through them, we may earn a commission at no extra cost to you. This never influences our recommendations or rankings.*
+
+
 It's 2 a.m. in a tent somewhere in the high desert, and the temperature has dropped harder than the forecast promised. You're curled in a ball, your feet are numb, and every time you shift, a cold seam finds a new patch of skin. The bag you bought because it was cheap and looked puffy is suddenly the least trustworthy piece of gear you own. The good news: you don't need to spend $400 to sleep warm. You need to understand temperature ratings, insulation type, and a few honest tradeoffs. Below is a roundup of real, currently available sleeping bags that will keep most people comfortable in genuinely cold conditions without blowing past a hundred bucks — plus the details that actually matter when the mercury drops.
 
 ## What to look for
@@ -14,7 +17,7 @@ It's 2 a.m. in a tent somewhere in the high desert, and the temperature has drop
 - **Fill weight and loft, not just the number on the tag.** A bag rated to 20°F with thin fill will sleep cold. Look at how much insulation is actually in the bag and whether it has a draft collar and hood.
 - **Shape and pad attachment.** Mummy bags are warmer per ounce; rectangular bags are roomier but draftier. A bag that attaches to your pad (or at least has a full-length draft tube) stops cold air from sneaking in.
 
-## Marmot Trestles 15 {{PRODUCT_LINK}}
+## [Marmot Trestles 15](https://www.amazon.com/s?k=Marmot%20Trestles%2015)
 
 **Price range:** $90–$110
 
@@ -32,7 +35,7 @@ The Trestles 15 is one of the most trusted names in the budget cold-weather cate
 
 **Best for:** Car campers and casual backpackers who want a dependable 15°F bag and don't mind the weight.
 
-## Kelty Cosmic 20 {{PRODUCT_LINK}}
+## [Kelty Cosmic 20](https://www.amazon.com/s?k=Kelty%20Cosmic%2020)
 
 **Price range:** $85–$100
 
@@ -50,7 +53,7 @@ The Cosmic 20 is the value pick that keeps showing up on gear lists for a reason
 
 **Best for:** Budget-conscious backpackers and first-time cold-weather campers who want a real 20°F bag without spending $200.
 
-## Teton Sports Celsius XXL {{PRODUCT_LINK}}
+## [Teton Sports Celsius XXL](https://www.amazon.com/s?k=Teton%20Sports%20Celsius%20XXL)
 
 **Price range:** $70–$95
 
@@ -68,7 +71,7 @@ If you're a bigger person, a side sleeper, or just hate feeling mummified, the C
 
 **Best for:** Larger sleepers, side sleepers, and car campers who prioritize room and warmth over packability.
 
-## Coleman Big Basin 15 {{PRODUCT_LINK}}
+## [Coleman Big Basin 15](https://www.amazon.com/s?k=Coleman%20Big%20Basin%2015)
 
 **Price range:** $60–$85
 
@@ -86,7 +89,7 @@ The Big Basin is Coleman's answer to "I want a warm bag and I want to spend as l
 
 **Best for:** Families, casual car campers, and anyone who wants maximum warmth for minimum money and doesn't need to carry it.
 
-## REI Co-op Siesta 30 {{PRODUCT_LINK}}
+## [REI Co-op Siesta 30](https://www.amazon.com/s?k=REI%20Co-op%20Siesta%2030)
 
 **Price range:** $70–$90
 
@@ -104,7 +107,7 @@ The Siesta 30 is a bit of a wildcard here because it's rated warmer (30°F) than
 
 **Best for:** Warm-weather campers, quilt-preferring sleepers, and anyone who wants a comfortable rectangular bag for mild cold.
 
-## Alps Mountaineering Crescent Lake 0 {{PRODUCT_LINK}}
+## [Alps Mountaineering Crescent Lake 0](https://www.amazon.com/s?k=Alps%20Mountaineering%20Crescent%20Lake%200)
 
 **Price range:** $80–$100
 
@@ -122,7 +125,7 @@ The Crescent Lake 0 is the most aggressively rated bag on this list, and it's ai
 
 **Best for:** Winter car campers, hunters, and anyone who needs a genuinely cold-rated bag on a tight budget.
 
-## Nemo Disco 15 {{PRODUCT_LINK}}
+## [Nemo Disco 15](https://www.amazon.com/s?k=Nemo%20Disco%2015)
 
 **Price range:** $95–$120 (often on sale under $100)
 
@@ -144,19 +147,19 @@ The Disco 15 is the outlier here — it's a premium-feeling bag that occasionall
 
 | Product | Price | Best For | Key Strength |
 |---|---|---|---|
-| Marmot Trestles 15 {{PRODUCT_LINK}} | $90–$110 | Car campers and casual backpackers | Trusted 15°F synthetic mummy with solid draft tube |
-| Kelty Cosmic 20 {{PRODUCT_LINK}} | $85–$100 | Budget backpackers | Realistic 20°F rating at a low price |
-| Teton Sports Celsius XXL {{PRODUCT_LINK}} | $70–$95 | Larger sleepers and side sleepers | Roomy 0°F-rated bag with compression sack |
-| Coleman Big Basin 15 {{PRODUCT_LINK}} | $60–$85 | Families and casual car campers | Flannel-lined, oversized, very affordable |
-| REI Co-op Siesta 30 {{PRODUCT_LINK}} | $70–$90 | Warm-weather and quilt-style sleepers | Comfortable rectangular shape, opens flat |
-| Alps Mountaineering Crescent Lake 0 {{PRODUCT_LINK}} | $80–$100 | Winter car campers and hunters | Genuine 0°F rating for the money |
-| Nemo Disco 15 {{PRODUCT_LINK}} | $95–$120 (sale) | Side sleepers wanting comfort | Spoon shape and premium build quality |
+| [Marmot Trestles 15](https://www.amazon.com/s?k=Marmot%20Trestles%2015) | $90–$110 | Car campers and casual backpackers | Trusted 15°F synthetic mummy with solid draft tube |
+| [Kelty Cosmic 20](https://www.amazon.com/s?k=Kelty%20Cosmic%2020) | $85–$100 | Budget backpackers | Realistic 20°F rating at a low price |
+| [Teton Sports Celsius XXL](https://www.amazon.com/s?k=Teton%20Sports%20Celsius%20XXL) | $70–$95 | Larger sleepers and side sleepers | Roomy 0°F-rated bag with compression sack |
+| [Coleman Big Basin 15](https://www.amazon.com/s?k=Coleman%20Big%20Basin%2015) | $60–$85 | Families and casual car campers | Flannel-lined, oversized, very affordable |
+| [REI Co-op Siesta 30](https://www.amazon.com/s?k=REI%20Co-op%20Siesta%2030) | $70–$90 | Warm-weather and quilt-style sleepers | Comfortable rectangular shape, opens flat |
+| [Alps Mountaineering Crescent Lake 0](https://www.amazon.com/s?k=Alps%20Mountaineering%20Crescent%20Lake%200) | $80–$100 | Winter car campers and hunters | Genuine 0°F rating for the money |
+| [Nemo Disco 15](https://www.amazon.com/s?k=Nemo%20Disco%2015) | $95–$120 (sale) | Side sleepers wanting comfort | Spoon shape and premium build quality |
 
 ## Final Verdict
 
-**Top pick: Marmot Trestles 15 {{PRODUCT_LINK}}.** It hits the sweet spot of a realistic 15°F rating, dependable construction, and a price that stays under a hundred dollars. The draft tube and insulated collar make a real difference on cold nights, and it's the bag I'd hand to a friend heading out for a frosty weekend without hesitation.
+**Top pick: [Marmot Trestles 15](https://www.amazon.com/s?k=Marmot%20Trestles%2015).** It hits the sweet spot of a realistic 15°F rating, dependable construction, and a price that stays under a hundred dollars. The draft tube and insulated collar make a real difference on cold nights, and it's the bag I'd hand to a friend heading out for a frosty weekend without hesitation.
 
-**Budget pick: Coleman Big Basin 15 {{PRODUCT_LINK}}.** If you want to spend as little as possible and still sleep warm, this is the one. It's heavy and bulky, but for car camping and family trips it delivers warmth at a price that's hard to argue with.
+**Budget pick: [Coleman Big Basin 15](https://www.amazon.com/s?k=Coleman%20Big%20Basin%2015).** If you want to spend as little as possible and still sleep warm, this is the one. It's heavy and bulky, but for car camping and family trips it delivers warmth at a price that's hard to argue with.
 
 ## FAQ
 
@@ -174,4 +177,8 @@ Not comfortably. A 30°F bag is a three-season bag for mild nights, and pushing 
 
 **How often should I replace a budget sleeping bag?**
 Synthetic bags typically lose loft and warmth after a few seasons of regular use, especially if they're stored compressed. Store it loosely in a cotton sack between trips, wash it gently once a season, and replace it when it stops lofting back up or you consistently sleep cold in conditions it used to handle.
+
+---
+
+> *Disclosure: Some links in this article may be affiliate links. If you buy through them, we may earn a commission at no extra cost to you. This never influences our recommendations or rankings.*
 {% endraw %}
