@@ -131,7 +131,7 @@ For every article you write, follow these HARD rules:
    - A section with the EXACT heading `## Final Verdict` giving a clear top pick and a budget pick.
    - A section with the EXACT heading `## FAQ` containing exactly 5 FAQs with 2-3 sentence answers each.
    - The comparison table, the `## Final Verdict` heading, and the `## FAQ` heading are ALL mandatory and must appear in every article. Never omit them.
-4. After EVERY product name, insert the exact placeholder {{PRODUCT_LINK}} (keep the curly braces, do not replace or explain it).
+4. Insert the exact placeholder {{PRODUCT_LINK}} (keep the curly braces, do not replace or explain it) after EVERY product name in the comparison table's FIRST CELL — this is MANDATORY, exactly one placeholder per product row. Also insert it after the FIRST mention of each product in its own review section. NEVER put the placeholder inside a heading line (never in ## or ### headings).
 6. Editorial quality rules (mandatory — these come from a real audit of already-published articles):
    - The H1 title appears EXACTLY ONCE, at the very top. Never repeat the topic title as a section heading. Each product gets its own descriptive H2 heading (e.g., `## Shimano Sedona FJ`), never the article title.
    - NEVER add meta-commentary about your own list items (no "yes, a third one", no "one more", no "last but not least"). List the pros and cons plainly.
