@@ -40,3 +40,5 @@ jobs:
           git add -A
           git commit -m "auto: publish daily camping article" || echo "no changes"
           git push
+      - name: Submit new URLs to IndexNow (Bing/Yandex fast indexing)
+        run: python indexnow_submit.py xuyanliang1989.github.io --from-git
