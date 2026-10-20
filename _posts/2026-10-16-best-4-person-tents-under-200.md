@@ -201,8 +201,8 @@ Most tents in this price range are too heavy and bulky for backpacking — they'
 
 **Related reading:**
 
-- [Best Camping Tents for Beginners in 2026](https://xuyanliang1989.github.io/2026/10/16/2026-10-16-best-camping-tents-for-beginners-in-2026.html)
-- [Best Sleeping Bags for Cold Weather Under $100](https://xuyanliang1989.github.io/2026/10/17/2026-10-17-best-sleeping-bags-for-cold-weather-under-100.html)
-- [Best Portable Camping Stoves for Backpacking](https://xuyanliang1989.github.io/2026/10/20/2026-10-20-best-portable-camping-stoves-for-backpacking.html)
+- [Best Camping Tents for Beginners in 2026](https://xuyanliang1989.github.io/2026/10/16/best-camping-tents-for-beginners-in-2026.html)
+- [Best Sleeping Bags for Cold Weather Under $100](https://xuyanliang1989.github.io/2026/10/17/best-sleeping-bags-for-cold-weather-under-100.html)
+- [Best Portable Camping Stoves for Backpacking](https://xuyanliang1989.github.io/2026/10/20/best-portable-camping-stoves-for-backpacking.html)
 
 *Also explore our other gear guides: [Fishing Gear Reviews](https://xuyanliang1989.github.io/fishing-gear-reviews/) · [Portable Power Station Reviews](https://xuyanliang1989.github.io/portable-power-reviews/)*
